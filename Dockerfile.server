@@ -1,0 +1,9 @@
+# node-server
+
+FROM node:14-alpine
+
+WORKDIR /app
+
+RUN apk --update add bash
+RUN rm -rf /var/cache/apk/*ls
+RUN npm install -g nodemon@2.0.6

@@ -1,0 +1,45 @@
+version: "3.3"
+services:
+  openapi-generator:
+    build:
+      context: ./
+      dockerfile: Dockerfile.generator
+    command: bash -c "npm install && node openapi.yml.watch.js"
+    container_name: ideal-ec-apispec-gen
+    tty: true
+    volumes:
+      - ./openapi.yml:/app/openapi.yml
+      - ./generator/package.json:/app/package.json
+      - ./generator/package-lock.json:/app/package-lock.json
+      - ./generator/openapi.yml.watch.js:/app/openapi.yml.watch.js
+      - ./server:/app/server
+    working_dir: /app
+
+  openapi-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile.server
+    command: bash -c "npm install && node node.files.wait.js"
+    container_name: ideal-ec-apispec-server
+    tty: true
+    volumes:
+      - ./server:/app/
+    ports:
+      - "13000:3000"
+    working_dir: /app
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    volumes:
+      - ./openapi.yml:/usr/share/nginx/html/openapi.yml
+    container_name: ideal-ec-apispec-ui
+    environment:
+      API_URL: openapi.yml
+    ports:
+      - "13001:8080"
+
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    container_name: ideal-ec-apispec-editor
+    ports:
+      - "13002:8080"

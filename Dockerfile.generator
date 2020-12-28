@@ -1,0 +1,8 @@
+# openapi-generator
+
+FROM node:14-alpine
+
+WORKDIR /app
+
+RUN apk --update add bash openjdk8
+RUN rm -rf /var/cache/apk/*ls
