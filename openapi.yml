@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: Example API
+  version: 0.0.1
+servers:
+  - url: http://localhost:3000/api
+    description: Example
+tags:
+  - name: HealthCheck
+paths:
+  /health:
+    get:
+      tags: ["HealthCheck"]
+      summary: Summary.
+      description: Description
+      operationId: operationId
+      responses:
+        "200":
+          description: ResponseDescription
