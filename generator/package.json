@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "private": "true",
+  "scripts": {
+    "start:watch": "node openapi.yml.watch.js",
+    "generate:server": "openapi-generator-cli generate -i openapi.yml -g nodejs-express-server -o server"
+  },
+  "license": "UNLINCENSED",
+  "dependencies": {
+    "chokidar": "3.4.2"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.1.14"
+  }
+}

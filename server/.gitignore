@@ -1,0 +1,8 @@
+*
+*/
+
+# Whitelist
+
+!node.files.wait.js
+!.nodemon.json
+!.gitignore
